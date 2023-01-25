@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.nio.file.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class FreeSpacePanel extends JPanel{
     
@@ -33,6 +34,35 @@ public class FreeSpacePanel extends JPanel{
         double percent = (double)freeSpace / (double)totalSpace * 100;
         percent = (int)(percent*100) / (double)100;
         //zadavane na teksta na etiketa
-        space.setText(freeSpace + " free out of " + totalSpace + " (" + percent + "%)");
+        
+        String freeSp = String.valueOf(freeSpace);
+        String iGotStr = "";
+        char comma = ',';
+        ArrayList<Character> iGot = new ArrayList<>();
+        for(int i = 0; i<freeSp.length();i++){
+        iGot.add(freeSp.charAt(i));
+        }
+        for(int i = freeSp.length(); i>3;i=i-3){
+        iGot.add(i-3,comma);
+        }
+        for(int i = 0;i<iGot.size();i++){
+        iGotStr = iGotStr + iGot.get(i);
+        }
+        
+        String totalSp = String.valueOf(totalSpace);
+        String iGotStr2 = "";
+        ArrayList<Character> iGot2 = new ArrayList<>();
+        for(int i = 0; i<totalSp.length();i++){
+        iGot2.add(totalSp.charAt(i));
+        }
+        for(int i = totalSp.length(); i>3;i=i-3){
+        iGot2.add(i-3,comma);
+        }
+        for(int i = 0;i<iGot2.size();i++){
+        iGotStr2 = iGotStr2 + iGot2.get(i);
+        }
+        
+        
+        space.setText(iGotStr + " free out of " + iGotStr2 + " (" + percent + "%)");
     }
 }
